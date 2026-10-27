@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 88ce7949371fd68468f0b5744760dc7e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - burnNoiseTex: {fileID: 2800000, guid: 071f0b425c80f5f4790457a2fbb036bd, type: 3}
+  - burnedAlbedo: {fileID: 2800000, guid: fded37046c31d5345bb5546dd8aa7f30, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

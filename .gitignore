@@ -1,0 +1,54 @@
+# Unity regenerates these directories.
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Ll]ogs/
+/[Bb]uild/
+/[Bb]uilds/
+/[Uu]ser[Ss]ettings/
+/MemoryCaptures/
+/Recordings/
+
+# Local IDE, assistant and Unity Version Control state.
+/.vs/
+/.vscode/
+/.idea/
+/.claude/
+/.plastic/
+/ignore.conf
+**/.claude/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.tmp
+*.log
+*.bak
+
+# Installers, exported copies and private signing/configuration files.
+*.apk
+*.aab
+*.unitypackage
+*.unitypackage.meta
+/*.zip
+*.keystore
+*.jks
+*.pfx
+*.p12
+.env
+.env.*
+!.env.example
+/Assets/UOSLauncherEncrypt/
+/Assets/UOSLauncherEncrypt.meta
+
+# Preserve source Assets, their .meta files, Packages and ProjectSettings.
