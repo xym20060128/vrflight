@@ -37,3 +37,8 @@ Unity 菜单 `SwimFlight/Build flightvr APK` 生成 `build/flightvr.apk`。构�
 提交 `Assets`（含 `.meta`）、`Packages`、`ProjectSettings` 和本仓库配置。缓存、APK、日志、本机配置及导入用 `.unitypackage` 已忽略；APK 可作为单独的发布附件。
 
 二进制资源已配置 Git LFS，第一次暂存前运行 `git lfs install`。第三方素材和 SDK 继续遵循各自原有许可；本项目不替它们授予新的许可。
+
+## 2026-10-28 control fixes
+
+- All four modes share `FlightControlModeSwitcher > Comparison` yaw limits. The main scene now uses 20 degrees/s and 40 degrees/s squared; standalone joystick turning also defaults to 20 degrees/s. Arm dynamics convert these settings to radians internally. Input mappings retain their own response below the shared limits.
+- Lean assist now requires forward lean with forward stick, or backward lean with backward stick. Upright posture, released stick or mismatched lean brakes motion. Direction reversal brakes before accelerating. Right B recalibrates the neutral pose.

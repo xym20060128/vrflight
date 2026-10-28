@@ -26,7 +26,7 @@ namespace SwimFlight
         public float verticalSpeed = 2f;
 
         [Tooltip("转向最大角速度 (deg/s), 作用于右摇杆 X")]
-        public float turnSpeed = 90f;
+        public float turnSpeed = 20f;
 
         [Tooltip("摇杆死区 (0~1)。小于该幅度的输入按 0 处理, 避免漂移")]
         [Range(0f, 0.5f)] public float deadzone = 0.15f;

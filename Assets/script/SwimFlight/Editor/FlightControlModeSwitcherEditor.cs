@@ -60,7 +60,7 @@ namespace SwimFlight
                 EditorGUILayout.HelpBox(sw.RenderingStatus, MessageType.Info);
                 Repaint();
             }
-            EditorGUILayout.HelpBox("All three modes use these shared motion conditions. The sections below contain only input mapping parameters. Restart current comparison trial resets pose and waypoint progress.", MessageType.Info);
+            EditorGUILayout.HelpBox("All four modes share the yaw speed and acceleration settings. The sections below contain only input mapping parameters. Restart current comparison trial resets pose and waypoint progress.", MessageType.Info);
 
             serializedObject.ApplyModifiedProperties();
             if (Application.isPlaying && GUILayout.Button("Restart current comparison trial"))
@@ -120,7 +120,7 @@ namespace SwimFlight
                     // 动力学参数 (mass/linearDamping/maxAcceleration/asymmetricDamping...) 曾经是死代码,
                     // 现在手臂条件回到力驱动动力学链路, 这些参数重新生效, 必须可调。
                     DrawPropertiesExcluding(editor.serializedObject, "m_Script", "xrOrigin", "headTransform",
-                        "enableDebugLog");
+                        "enableDebugLog", "maxAngularVelocity", "maxAngularAcceleration");
                 else if (controller is JoystickFlightController)
                     EditorGUILayout.HelpBox("Joystick axes map directly to target velocity. Speed, deadzone, heading, braking and turn response come from the shared settings above.", MessageType.Info);
                 else

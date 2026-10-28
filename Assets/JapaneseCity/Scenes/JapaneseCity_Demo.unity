@@ -8497,7 +8497,7 @@ MonoBehaviour:
   headTransform: {fileID: 1917989079}
   moveSpeed: 3
   verticalSpeed: 2
-  turnSpeed: 90
+  turnSpeed: 20
   deadzone: 0.15
   smoothing: 8
   enableTurn: 1
@@ -29515,8 +29515,8 @@ MonoBehaviour:
   comparison:
     maxSpeed: 3
     acceleration: 2
-    maxYawSpeed: 50
-    yawAcceleration: 60
+    maxYawSpeed: 20
+    yawAcceleration: 40
     stickDeadzone: 0.15
     enableVertical: 1
     enableTurn: 1

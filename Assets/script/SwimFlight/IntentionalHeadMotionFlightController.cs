@@ -14,9 +14,9 @@ namespace SwimFlight
         public Transform xrOrigin;
         public Transform headTransform;
         [Header("Lean-assisted acceleration")]
-        [Tooltip("Forward HMD displacement ignored as natural sway (metres).")]
+        [Tooltip("Forward/backward HMD displacement ignored as natural sway (metres).")]
         public float leanDeadzone = 0.025f;
-        [Tooltip("Forward displacement producing full acceleration (metres).")]
+        [Tooltip("Displacement in the requested travel direction producing full acceleration (metres).")]
         public float fullLeanDistance = 0.18f;
         public float maxAcceleration = 2f;
         public float maxForwardSpeed = 5f;
@@ -111,8 +111,7 @@ namespace SwimFlight
             Vector2 right = ReadStick(_rightDevice);
             Vector3 localPosition = GetControlLocalPosition();
             float displacement = Vector3.Dot(localPosition - _neutralPosition, _neutralForward);
-            float targetLean = Mathf.Clamp01((displacement - leanDeadzone) /
-                Mathf.Max(0.001f, fullLeanDistance - leanDeadzone));
+            float targetLean = ComputeDirectionalLean(displacement, left.y, leanDeadzone, fullLeanDistance);
             float alpha = 1f - Mathf.Exp(-dt / Mathf.Max(0.001f, leanSmoothingTime));
             _leanAmount = Mathf.Lerp(_leanAmount, targetLean, alpha);
             if (ComparisonMotor != null)
@@ -158,6 +157,16 @@ namespace SwimFlight
             xrOrigin.position += (forward * _forwardSpeed + _auxiliaryVelocity) * dt;
             if (enableTurn)
                 xrOrigin.rotation = Quaternion.AngleAxis(right.x * turnSpeed * dt, Vector3.up) * xrOrigin.rotation;
+        }
+
+        // Gate before smoothing so a stick reversal cannot reuse the previous lean boost.
+        public static float ComputeDirectionalLean(float displacement, float forwardInput,
+            float deadzone, float fullDistance)
+        {
+            if (Mathf.Abs(forwardInput) < 1e-6f) return 0f;
+            float alignedDisplacement = displacement * Mathf.Sign(forwardInput);
+            return Mathf.Clamp01((alignedDisplacement - deadzone) /
+                Mathf.Max(0.001f, fullDistance - deadzone));
         }
 
         private Vector2 ReadStick(InputDevice device)
